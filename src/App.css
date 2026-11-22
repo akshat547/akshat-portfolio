@@ -1147,6 +1147,44 @@ button, input, textarea {
   }
 }
 
+/* ===== FULL WIDTH WEBSITE FIX ===== */
+
+/* All sections cover complete screen width */
+.portfolio {
+  width: 100%;
+  max-width: none;
+}
+
+.section {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Remove rounded outer section edges */
+.about-section,
+.projects-section,
+.education-section {
+  border-radius: 0;
+}
+
+/* Keep content spacing balanced on large screens */
+@media (min-width: 951px) {
+  .section {
+    padding-left: 7%;
+    padding-right: 7%;
+  }
+}
+
+/* Mobile full width */
+@media (max-width: 950px) {
+  .section {
+    width: 100%;
+    max-width: none;
+  }
+}
+
 
 
 
