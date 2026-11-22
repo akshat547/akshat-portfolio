@@ -33,24 +33,54 @@ const navItems = [
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const message = form.message.value;
+    const form = e.currentTarget;
 
-    const subject = encodeURIComponent(
-      `Portfolio Contact from ${name}`
-    );
+    const formData = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      message: form.message.value.trim(),
+    };
 
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    );
+    try {
+      setIsSubmitting(true);
+      setSubmitStatus("");
 
-    window.location.href = `mailto:akshatrawat547@gmail.com?subject=${subject}&body=${body}`;
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Message could not be sent.");
+      }
+
+      setSubmitStatus(
+        "Message sent successfully! Thank you for contacting me."
+      );
+
+      form.reset();
+    } catch (error) {
+      console.error("Contact form error:", error);
+
+      setSubmitStatus(
+        error.message === "Failed to fetch"
+          ? "Could not connect to the server. Please make sure the backend is running."
+          : error.message || "Something went wrong. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -449,9 +479,19 @@ function App() {
                 required
               ></textarea>
 
-              <button type="submit" className="primary-btn">
-                Send Message ↗
+              <button
+                type="submit"
+                className="primary-btn"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : "Send Message ↗"}
               </button>
+
+              {submitStatus && (
+                <p className="form-status" role="status" aria-live="polite">
+                  {submitStatus}
+                </p>
+              )}
             </form>
           </div>
         </section>
