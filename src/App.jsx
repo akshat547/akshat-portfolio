@@ -435,7 +435,8 @@ function App() {
           <p className="project-note">
             More projects will be added as I continue building and learning.
           </p>
-
+         
+            
         </section>
 
         {/* EDUCATION */}
