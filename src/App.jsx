@@ -51,13 +51,16 @@ function App() {
       setIsSubmitting(true);
       setSubmitStatus("");
 
-      const response = await fetch("https://akshat-portfolio-api-8xsv.onrender.com/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://akshat-portfolio-api-8xsv.onrender.com/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
 
@@ -289,13 +292,16 @@ function App() {
 
         {/* PROJECTS */}
         <section id="projects" className="section projects-section">
+
           <div className="section-heading">
             <p className="section-label">03 / MY WORK</p>
             <h2>Projects I've worked on.</h2>
             <p>A look at my journey of learning and building.</p>
           </div>
 
+          {/* PROJECT 01 - NEXORA */}
           <div className="project-card">
+
             <div className="project-art">
               <div className="nexora-gallery">
                 <img
@@ -311,6 +317,7 @@ function App() {
             </div>
 
             <div className="project-information">
+
               <span className="project-number">
                 FEATURED PROJECT / 01
               </span>
@@ -344,12 +351,91 @@ function App() {
                   Discuss Project
                 </a>
               </div>
+
+            </div>
+          </div>
+
+          {/* PROJECT 02 - SMARTKHARCHA */}
+          <div className="project-card smartkharcha-card">
+
+            <div className="project-art smartkharcha-art">
+              <div className="smartkharcha-gallery">
+
+                <img
+                  src="/projects/smartkharcha-dashboard.png"
+                  alt="SmartKharcha Dashboard"
+                />
+
+                <img
+                  src="/projects/smartkharcha-transactions.png"
+                  alt="SmartKharcha Transactions"
+                />
+
+                <img
+                  src="/projects/smartkharcha-wallets.png"
+                  alt="SmartKharcha Wallets"
+                />
+
+                <img
+                  src="/projects/smartkharcha-budgets.png"
+                  alt="SmartKharcha Budgets"
+                />
+
+              </div>
+            </div>
+
+            <div className="project-information">
+
+              <span className="project-number">
+                FEATURED PROJECT / 02
+              </span>
+
+              <h3>SmartKharcha</h3>
+
+              <p>
+                A smart expense tracker application designed to help
+                users manage their personal finances. It includes
+                authentication, an interactive dashboard, income and
+                expense tracking, wallet management and budget planning
+                with MongoDB data persistence.
+              </p>
+
+              <div className="project-tech">
+                <span>React.js</span>
+                <span>Node.js</span>
+                <span>Express.js</span>
+                <span>MongoDB</span>
+                <span>CSS3</span>
+              </div>
+
+              <div className="project-actions">
+
+                <a
+                  href="https://client-tawny-six-73.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="primary-btn"
+                >
+                  Live Demo ↗
+                </a>
+
+                <a
+                  href="https://github.com/akshat547"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="outline-btn"
+                >
+                  GitHub Profile ↗
+                </a>
+
+              </div>
             </div>
           </div>
 
           <p className="project-note">
             More projects will be added as I continue building and learning.
           </p>
+
         </section>
 
         {/* EDUCATION */}
@@ -361,6 +447,7 @@ function App() {
           </div>
 
           <div className="education-list">
+
             <div className="education-card">
               <span className="education-year">
                 CURRENTLY PURSUING
@@ -394,11 +481,13 @@ function App() {
 
               <p>Gurukul International School, Haldwani</p>
             </div>
+
           </div>
         </section>
 
         {/* CONTACT */}
         <section id="contact" className="section contact-section">
+
           <div className="section-heading">
             <p className="section-label">05 / CONTACT</p>
             <h2>Let's create something together.</h2>
@@ -408,6 +497,7 @@ function App() {
           </div>
 
           <div className="contact-content">
+
             <div className="contact-information">
               <h3>Get in touch.</h3>
 
@@ -452,6 +542,7 @@ function App() {
             </div>
 
             <form className="contact-form" onSubmit={handleSubmit}>
+
               <label htmlFor="name">Your Name</label>
               <input
                 type="text"
@@ -492,6 +583,7 @@ function App() {
                   {submitStatus}
                 </p>
               )}
+
             </form>
           </div>
         </section>
@@ -500,6 +592,7 @@ function App() {
 
       {/* FOOTER */}
       <footer className="footer">
+
         <a href="#home" className="logo">
           AK<span>.</span>
         </a>
@@ -509,6 +602,7 @@ function App() {
         </p>
 
         <div className="footer-socials">
+
           <a
             href="https://github.com/akshat547"
             target="_blank"
@@ -532,11 +626,13 @@ function App() {
           >
             Instagram
           </a>
+
         </div>
 
         <span className="copyright">
           © {new Date().getFullYear()} Akshat Rawat. All rights reserved.
         </span>
+
       </footer>
 
     </div>
